@@ -1,0 +1,83 @@
+# macOS
+.DS_Store
+._*
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/bin/
+/vendor/
+go.work
+go.work.sum
+go.sum.backup
+
+# Python / ML
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+venv/
+.env/
+.venv/
+
+# ML Artifacts 
+research/tmp/
+research/temp/
+research/datasets/raw/
+
+# Node / Dashboard
+node_modules/
+dashboard/build/
+dashboard/dist/
+
+# Generated output
+validation_results/
+
+# Logs & runtime
+*.log
+logs/
+*.tmp
+*.pid
+
+# Environment & secrets
+*.key
+*.pem
+*.crt
+*.pfx
+
+# Kubernetes
+*-secret.yaml
+secrets.yaml
+*.kubeconfig
+.minikube/
+
+# Docker
+docker-compose.override.yml
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# LaTeX / paper
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
+# Backup files
+*.bak
+*.old
+*~
+
+.claude
+.env
+.env.*
+gcp-key.json

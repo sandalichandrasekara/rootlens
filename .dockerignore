@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+dashboard/node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build outputs
+dashboard/build/
+dashboard/dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Git
+.git/
+.gitignore
+.github/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test files
+*_test.go
+*.test
+coverage/
+*.log
+
+# Documentation
+*.md
+docs/
+assets/
+LICENSE
+
+# CI/CD and scripts (not needed in container)
+deploy/
+deployments/
+scripts/
+
+# Dashboard source (not needed for Go API build)
+dashboard/src/
+dashboard/public/
+dashboard/Dockerfile
+dashboard/.dockerignore
+
+# ML service (Python code not needed in Go API image)
+ml-integration/
+
+# Operator (not needed in API image)
+operator/
+
+# Research and data collection
+research/
+data-collection/
+validation_results/
+
+# Local config and secrets
+.env
+.env.*
+gcp-key.json
+*.pem
+*.key
+*.crt

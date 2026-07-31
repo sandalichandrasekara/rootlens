@@ -1,0 +1,128 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: rootlens-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD must be set}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - rootlens-network
+
+  ml-service:
+    build:
+      context: ./ml-integration
+      dockerfile: Dockerfile
+    container_name: rootlens-ml
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      FLASK_DEBUG: "false"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    networks:
+      - rootlens-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: rootlens-api
+    ports:
+      - "8080:8080"
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: ${RABBITMQ_USER:-admin}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD must be set}
+      RABBITMQ_QUEUE: ${RABBITMQ_QUEUE:-rootlens-tasks}
+      ML_SERVICE_URL: http://ml-service:5000
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      ml-service:
+        condition: service_healthy
+    networks:
+      - rootlens-network
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: http://localhost:8080
+    container_name: rootlens-dashboard
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    networks:
+      - rootlens-network
+
+  consumer:
+    build:
+      context: ./deployments/consumer
+      dockerfile: Dockerfile
+    container_name: rootlens-consumer
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_PASS: ${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD must be set}
+      QUEUE_NAME: ${RABBITMQ_QUEUE:-rootlens-tasks}
+      PROCESSING_TIME_MS: 100
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - rootlens-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: rootlens-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - api
+    networks:
+      - rootlens-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: rootlens-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./deployments/grafana/provisioning:/etc/grafana/provisioning
+      - ./deployments/grafana/rootlens-dashboard.json:/var/lib/grafana/dashboards/rootlens-dashboard.json
+    depends_on:
+      - prometheus
+    networks:
+      - rootlens-network
+
+networks:
+  rootlens-network:
+    driver: bridge
+
+volumes:
+  rabbitmq_data:
+  grafana_data:

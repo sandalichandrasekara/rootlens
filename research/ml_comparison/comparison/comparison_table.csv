@@ -1,0 +1,5 @@
+Category,Scenarios,Rule-Based Accuracy,RF Accuracy,SVM Accuracy
+Cold Start,5,100.0%,100.0%,100.0%
+Scheduling,5,100.0%,100.0%,100.0%
+Metric Lag,5,100.0%,100.0%,100.0%
+Overall,15,100.0%,100.0%,100.0%

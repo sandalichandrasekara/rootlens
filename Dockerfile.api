@@ -1,0 +1,42 @@
+# RootLens API Server Dockerfile
+FROM golang:1.25-alpine AS builder
+
+WORKDIR /app
+
+# Install git for fetching dependencies
+RUN apk add --no-cache git ca-certificates
+
+# Copy go mod files
+COPY go.mod go.sum ./
+
+# Download dependencies with retry logic
+RUN --mount=type=cache,target=/go/pkg/mod \
+    for i in 1 2 3 4 5; do \
+        echo "Attempt $i: Downloading dependencies..." && \
+        go mod download && break || \
+        (echo "Retry $i failed, waiting..." && sleep 10); \
+    done
+
+# Copy source code
+COPY . .
+
+# Build the server binary — strip debug info to reduce binary size
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o server ./cmd/server/main.go
+
+# Production stage
+FROM alpine:3.21
+
+RUN apk --no-cache add ca-certificates && \
+    addgroup -S app && adduser -S app -G app
+
+WORKDIR /app
+
+COPY --from=builder /app/server .
+
+RUN chown app:app server
+
+USER app
+
+EXPOSE 8080
+
+CMD ["./server"]

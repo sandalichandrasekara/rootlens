@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-02-22T12:32:37.121980",
+  "test_file": "synthetic_run_20260222_121837.json",
+  "total_scenarios": 15,
+  "models": {
+    "random_forest": {
+      "accuracy": 1.0,
+      "n_estimators": 100
+    },
+    "svm": {
+      "accuracy": 1.0,
+      "kernel": "rbf"
+    }
+  }
+}

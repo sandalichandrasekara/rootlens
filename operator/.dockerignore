@@ -1,0 +1,36 @@
+# Build artifacts
+bin/
+*.test
+*.out
+cover.out
+
+# Test environment binaries (kubebuilder envtest)
+testbin/
+
+# Test files (not needed in production image)
+*_test.go
+
+# Git
+.git/
+.gitignore
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Documentation
+*.md
+
+# Helm charts and K8s config (not needed in container)
+helm/
+config/
+
+# Logs and temp
+*.log
+*.tmp

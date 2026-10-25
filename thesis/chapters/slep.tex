@@ -1,0 +1,59 @@
+% chapter5_slep.tex
+
+\section{Chapter Overview}
+This chapter examines the Social, Legal, Ethical, and Professional (SLEP) issues encountered during the RootLens project, with reference to the BCS Code of Conduct (BCS, 2022). Each issue is identified, discussed in the context of the project, and accompanied by the mitigation strategy employed. The BCS Code of Conduct defines four key tenets that professionals in computing must uphold: Public Interest, Professional Competence and Integrity, Duty to Relevant Authority, and Duty to the Profession. These tenets were applied throughout the project lifecycle.
+
+\section{SLEP Issues and Mitigation}
+
+Table~\ref{tab:slep_issues} summarises the SLEP issues identified across the four dimensions, along with the mitigation measures applied.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\textbf{Social Issues} & \textbf{Legal Issues} \\ \hline
+Risk of over-reliance on automated diagnosis reducing SRE skill development. Dashboard designed for accessibility across experience levels. System augments human judgment rather than replacing it. &
+Telemetry data contains no PII under GDPR/Data Protection Act 2018. Survey responses anonymised before storage. All dependencies use permissive open-source licences (Apache 2.0, BSD, MIT). Hardcoded credentials remediated via environment variables and Kubernetes Secrets. \\ \hline
+\textbf{Ethical Issues} & \textbf{Professional Issues} \\ \hline
+ML models expose feature importances for transparency. 60/40 confidence model communicates diagnostic uncertainty explicitly. Fault-injection experiments conducted in isolated Minikube cluster with no production data. Models trained on balanced datasets. &
+BCS Code of Conduct followed: Public Interest (enhances reliability), Professional Competence (established SE and ML best practices), Duty to Authority (IIT FYP guidelines, ethical approval), Duty to Profession (reproducible documentation). \\ \hline
+\end{tabularx}
+\caption{SLEP Issues Summary Grid}
+\label{tab:slep_issues}
+\end{table}
+
+\subsection{Social Issues}
+RootLens automates the diagnosis of Kubernetes scaling delays, which raises the concern that engineering teams may develop over-reliance on automated diagnoses and reduce their own investigative skills over time. To mitigate this, the dashboard presents numerical confidence scores and feature importance vectors rather than a simplified categorical indicator, encouraging engineers to critically evaluate the output rather than accept it blindly. This concern directly influenced the design decision to show numerical confidence values instead of a green/amber/red traffic-light indicator.
+
+The dashboard presents outputs in plain language accessible to engineers at varying experience levels. RootLens provides diagnosis only; human judgment remains essential for deciding and executing remediation actions. The system is positioned as a diagnostic aid that accelerates the investigation process, not as a replacement for human expertise.
+
+\subsection{Legal Issues}
+The telemetry data collected by RootLens consists of Kubernetes events, pod lifecycle metrics, and message queue depths. This is operational infrastructure data that contains no Personally Identifiable Information (PII) under the General Data Protection Regulation (GDPR) or the UK Data Protection Act 2018. No user-identifiable data is collected, stored, or processed by the system at any point.
+
+A requirements elicitation survey was conducted during the project; all responses were anonymised before storage and analysis. Participants were informed of the purpose of the survey and their data was used solely for requirements gathering.
+
+All third-party software dependencies used in RootLens are distributed under permissive open-source licences, including Apache 2.0, BSD, and MIT. RootLens itself is released under the MIT licence. A security audit conducted during development identified hardcoded credentials across eight configuration files; these were remediated by replacing them with environment variable references and Kubernetes Secret objects.
+
+\subsection{Ethical Issues}
+The use of machine learning in a diagnostic system raises ethical concerns around transparency, explainability, and the honest communication of uncertainty. RootLens addresses these as follows:
+
+\begin{itemize}
+    \item \textbf{AI Transparency:} Random Forest classifiers were selected in part because they natively expose \texttt{feature\_importances\_} for every prediction, providing inherent explainability without requiring post-hoc tools such as SHAP (Lundberg and Lee, 2017) or LIME (Ribeiro, Singh and Guestrin, 2016). This transparency requirement was a primary factor in selecting Random Forest over neural network alternatives.
+    \item \textbf{Uncertainty Communication:} The 60/40 confidence combination model explicitly communicates the degree of certainty in each diagnosis. Low-confidence predictions are clearly flagged, enabling operators to allocate investigation effort appropriately rather than being misled by a false sense of certainty.
+    \item \textbf{No Production Risk:} All fault-injection experiments were performed in an isolated Minikube cluster with no connection to production environments. Using production systems would have risked service disruption to real users, which was unacceptable.
+    \item \textbf{Balanced Training Data:} All ML models were trained on datasets with no systematic class underrepresentation, reducing the risk of biased predictions that could consistently misdiagnose certain failure types.
+\end{itemize}
+
+\subsection{Professional Issues}
+The project was conducted in alignment with the four tenets of the BCS Code of Conduct (BCS, 2022):
+
+\begin{itemize}
+    \item \textbf{Public Interest:} RootLens enhances the reliability of cloud-native systems by providing transparent, confidence-quantified diagnoses. Survey participant privacy was protected through anonymisation.
+    \item \textbf{Professional Competence and Integrity:} The system was developed using established software engineering and machine learning best practices. All results, including limitations and failure cases, are reported accurately and honestly.
+    \item \textbf{Duty to Relevant Authority:} The project was conducted in compliance with IIT FYP guidelines. Ethical approval was obtained for the requirements elicitation survey prior to distribution.
+    \item \textbf{Duty to the Profession:} The fault-injection dataset, implementation details, and evaluation methodology are documented at a level sufficient for independent reproduction, contributing to the broader research community.
+\end{itemize}
+
+\section{Chapter Summary}
+This chapter identified and addressed the social, legal, ethical, and professional issues relevant to the RootLens project. The key mitigations include designing the system as a diagnostic aid rather than an autonomous decision-maker, ensuring no PII is collected or processed, providing AI transparency through feature importances and explicit confidence scores, and aligning all project activities with the BCS Code of Conduct. These considerations informed design decisions throughout the project, particularly the choice of interpretable ML models and the presentation of uncertainty in diagnostic outputs.

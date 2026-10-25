@@ -1,0 +1,69 @@
+% chapter10_conclusion.tex
+
+\section{Chapter Overview}
+This chapter concludes the \textbf{RootLens} project by summarising the research achievements, reflecting on the process, and outlining future directions.
+
+\section{Summary of Research}
+This research designed, implemented, and evaluated RootLens, a hybrid root cause analysis system for \textbf{KEDA}-triggered \textbf{Kubernetes} autoscaling delays. The system combines a Go rule-based engine with three category-specific \textbf{Random Forest} ML explainer models, producing structured JSON diagnoses via a REST API. Evaluated across 30 controlled fault-injection experiments, it achieved 96.7\% root cause accuracy, 86.7\% sub-cause accuracy, 0.764 mean confidence, and 177ms mean latency.
+
+\section{Achievement of Research Aims and Objectives}
+Table \ref{tab:objectives_achieved} assesses the achievement of all eight research objectives defined in Chapter 1.
+
+\begin{xltabular}{\textwidth}{|p{1.5cm}|p{4cm}|p{2cm}|X|}
+
+\hline
+\textbf{ID} & \textbf{Objective} & \textbf{Status} & \textbf{Evidence} \\ \hline
+\endfirsthead
+
+\hline
+\textbf{ID} & \textbf{Objective} & \textbf{Status} & \textbf{Evidence} \\ \hline
+\endhead
+RO1 & Identify and critically analyse existing RCA and autoscaling approaches & Achieved & Chapter 2: 20+ papers reviewed; research gap identified \\ \hline
+RO2 & Elicit and specify system requirements & Achieved & Chapter 4: 15 FRs, 7 NFRs documented; MoSCoW prioritised \\ \hline
+RO3 & Design and implement the rule-based RCA engine & Achieved & Chapters 6-7: Three-category classifier designed and implemented; Chapter 8: Validated with 96.7\% accuracy across 30 experiments \\ \hline
+RO4 & Design, train, and evaluate three Random Forest explainer models & Achieved & Chapter 7: Models trained on real fault-injection data; Chapter 8: 86.7\% sub-cause accuracy validated \\ \hline
+RO5 & Implement and validate the 60/40 confidence combination model & Achieved & Chapter 7: Weighted combination implemented; Chapter 8: Outperforms both rule-only and ML-only baselines \\ \hline
+RO6 & Integrate all components into a deployable microservice system & Achieved & Chapter 7: Docker Compose and Kubernetes Operator deployments \\ \hline
+RO7 & Evaluate RootLens against accuracy, latency, and confidence targets & Achieved & Chapter 8: All NFR targets met or exceeded \\ \hline
+RO8 & Document the system design, implementation, and evaluation & Achieved & Thesis chapters 1-10; API documentation; deployment guides \\ \hline
+
+\caption{Achievement of Research Objectives}
+\label{tab:objectives_achieved}
+\end{xltabular}
+
+\section{Utilization of Knowledge from the Course}
+The project directly applied knowledge from the undergraduate programme: the full SDLC from Software Engineering, Saunders' Research Onion (Saunders, Lewis and Thornhill, 2019) from Research Methodology, distributed systems principles (graceful degradation, service communication), ML foundations (feature engineering, ensemble methods, overfitting), and cloud computing knowledge (containerisation, Kubernetes API mechanics).
+
+\section{Use of Existing Skills}
+Pre-existing skills applied to the project include: Go programming, React frontend development, Docker containerisation, Git version control, Python scripting, and basic Kubernetes administration. These skills, developed through coursework and prior personal projects, formed the foundation upon which the system was built.
+
+\section{Use of New Skills}
+The following new skills were developed specifically through this project: Kubernetes Operator development using kubebuilder v4, production ML engineering (feature contracts, scaler synchronisation, model versioning), KEDA administration and ScaledObject configuration, chaos engineering methodology for controlled fault injection, academic research methodology including systematic literature review, and LaTeX typesetting for thesis preparation. These skills extend beyond the undergraduate curriculum and are directly applicable to professional cloud-native engineering roles.
+
+\section{Achievement of Learning Outcomes}
+All FYP learning outcomes were addressed: LO1 (research and analysis) through the systematic literature review, LO2 (critical evaluation) through baseline comparison and discussion, LO3 (design) through the system architecture, LO4 (implementation) through the working prototype codebase, and LO5 (testing) through the 30-experiment evaluation.
+
+\section{Problems and Challenges Faced}
+The four main challenges were: (1) a feature-scaler dimension mismatch between Go and Python, resolved by establishing a formal feature contract enforced at startup; (2) the dashboard displaying ``unknown'' root causes due to storage-layer type conversion and incorrect string constants; (3) the confidence combination formula not being wired into the result path; and (4) the unexpectedly high effort required for generating 30 labelled fault-injection experiments, each requiring cluster reset, fault configuration, execution, and label verification.
+
+\section{Deviations from Plan}
+The Kubernetes Operator was adopted as an additional component (replacing the originally planned Helm chart) to demonstrate automated deployment via Custom Resource Definitions. SHAP-based explainability was replaced with \texttt{RandomForestClassifier.feature\_importances\_}, which provides equivalent explanatory value with lower computational overhead and no C-extension dependency issues.
+
+\section{Limitations of the Research}
+Three categories of limitation constrain the generalisability of these results; these are typical of single-researcher FYP projects operating under fixed time and resource constraints and do not invalidate the core contributions, but define the boundaries within which the results should be interpreted. \textbf{Data limitations:} the training dataset of 34-42 samples per category is small by ML standards, and the 100\% held-out test accuracy likely overestimates generalisation due to small test sets (6-8 samples); cross-validation was not performed. \textbf{Environmental limitations:} the system is validated only with RabbitMQ on a single-node Minikube cluster; production environments with different infrastructure characteristics, KEDA event sources, or multi-node topologies may require threshold recalibration and produce different accuracy profiles. \textbf{Architectural limitations:} the priority-ordered decision tree cannot handle co-occurring faults, the fixed thresholds assume stable infrastructure, and the in-memory ring buffer provides no persistence across restarts.
+
+\section{Future Enhancements}
+The three most impactful enhancements are:
+
+\begin{enumerate}
+    \item \textbf{Expanded Event Source Support:} Adapt the data collection and feature engineering layers to support Kafka, AWS SQS, and Azure Service Bus KEDA scalers, enabling evaluation across a wider range of event-driven architectures.
+    \item \textbf{Larger Training Dataset:} Expand the real fault-injection dataset to 100+ samples per category through automated experiment orchestration, improving sub-cause accuracy and enabling cross-validation.
+    \item \textbf{Automated Remediation:} Integrate with Kubernetes admission controllers or operator reconciliation loops to automatically apply corrective actions for high-confidence diagnoses.
+\end{enumerate}
+
+\section{Achievement of Contribution to Body of Knowledge}
+This research produced three original contributions to the body of knowledge in cloud-native systems observability and applied ML: a formal RCA taxonomy for KEDA-triggered scaling delays, a hybrid confidence combination model validated against real experimental data, and a real Kubernetes fault-injection dataset. These contributions are novel within the existing literature, as no prior work addresses the specific combination of KEDA autoscaling delay classification, sub-cause ML explainability, and hybrid confidence quantification in a single deployable system.
+
+\section{Concluding Remarks}
+RootLens demonstrates that automated, confidence-quantified root cause analysis for Kubernetes autoscaling delays is technically feasible and practically deployable at sub-200ms latency with 96.7\% accuracy. The core hybrid pipeline, combining a rule-based engine with ML explainer models, addresses a documented gap in the literature where existing RCA systems assume running services and cannot diagnose infrastructure-layer failures during pod instantiation. The 30-experiment evaluation, while sufficient to meet the specified NFR targets, produces confidence intervals that warrant caution in generalising to production environments. The failure case analysis identified structural limitations, particularly co-occurring faults and fixed thresholds, that define a clear research roadmap. This project contributes a novel RCA taxonomy, a validated hybrid confidence model, and a real fault-injection dataset to the field of cloud-native systems observability.
+

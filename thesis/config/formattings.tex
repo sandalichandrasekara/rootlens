@@ -1,0 +1,105 @@
+% ==========================
+% DOCUMENT FORMATTING
+% ==========================
+
+\onehalfspacing
+\justifying
+\setlength{\headheight}{14.5pt}
+
+% ==========================
+% HEADINGS
+% ==========================
+
+\titleformat{\chapter}[block]
+    {\normalfont\fontsize{16}{19}\bfseries}
+    {CHAPTER \thechapter:}
+    {1em}
+    {\MakeTextUppercase{#1}}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+\titleformat{name=\chapter,numberless}[block]
+    {\normalfont\fontsize{16}{19}\bfseries}
+    {}
+    {0pt}
+    {\MakeTextUppercase{#1}}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+\titleformat{\section}[block]
+    {\normalfont\fontsize{14}{17}\bfseries}
+    {\thesection}
+    {1em}
+    {#1}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}[block]
+    {\normalfont\fontsize{12}{15}\bfseries}
+    {\thesubsection}
+    {1em}
+    {#1}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+\titleformat{\subsubsection}[block]
+    {\normalfont\fontsize{12}{15}\bfseries}
+    {\thesubsubsection}
+    {1em}
+    {#1}
+\titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% ==========================
+% HEADER / FOOTER
+% ==========================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\newcommand{\currentchapter}{}
+\fancyhead[L]{\small RootLens}
+\fancyhead[R]{\small \currentchapter}
+
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\small Sandali Chandrasekara / 20220174}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\renewcommand{\bibname}{REFERENCES}
+
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \fancyfoot[L]{\small Sandali Chandrasekara / 20220174}
+}
+
+% ==========================
+% References formatting
+% ==========================
+\makeatletter
+\renewenvironment{thebibliography}[1]
+  {\chapter*{\bibname}%
+   \addcontentsline{toc}{chapter}{\bibname}%
+   \list{}%
+     {%
+      \setlength{\leftmargin}{1.5em}%
+      \setlength{\itemindent}{-1.5em}%
+      \setlength{\labelsep}{0pt}%
+      \setlength{\labelwidth}{0pt}%
+      \setlength{\listparindent}{0pt}%
+      \setlength{\parsep}{0pt}%
+      \setlength{\itemsep}{0.8\baselineskip}%
+      \setlength{\topsep}{0pt}%
+      \setlength{\partopsep}{0pt}%
+      \setlength{\rightmargin}{0pt}%
+     }%
+   \sloppy
+   \clubpenalty4000
+   \widowpenalty4000
+   \sfcode`\.\@m}
+  {\def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
+   \endlist}
+\makeatother
+
+\Urlmuskip=0mu plus 2mu\relax

@@ -1,0 +1,107 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ==========================
+% Include Configurations
+% ==========================
+\input{config/packages}
+\input{config/formattings}
+
+\begin{document}
+
+% --------------------------
+% Cover Page (no page number)
+% --------------------------
+\pagestyle{empty}
+\input{sections/title_page}
+\cleardoublepage
+
+% --------------------------
+% Front Matter
+% Roman numerals: i, ii, iii...
+% Starts from Abstract as page i
+% --------------------------
+\pagestyle{fancy}
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\input{sections/abstract}
+\cleardoublepage
+\input{sections/declaration}
+\cleardoublepage
+\input{sections/acknowledgement}
+\cleardoublepage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\input{sections/abbreviations}
+
+% --------------------------
+% Main Chapters
+% Arabic numerals: 1, 2, 3...
+% Resets to page 1 at Chapter 1
+% --------------------------
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\chapter{INTRODUCTION}
+\renewcommand{\currentchapter}{INTRODUCTION}
+\input{chapters/introduction}
+
+\chapter{LITERATURE REVIEW}
+\renewcommand{\currentchapter}{LITERATURE REVIEW}
+\input{chapters/literature_review}
+
+\chapter{METHODOLOGY}
+\renewcommand{\currentchapter}{METHODOLOGY}
+\input{chapters/methodology}
+
+\chapter{SOFTWARE REQUIREMENT SPECIFICATION (SRS)}
+\renewcommand{\currentchapter}{SOFTWARE REQUIREMENT SPECIFICATION (SRS)}
+\input{chapters/srs}
+
+\chapter{SOCIAL, LEGAL, ETHICAL AND PROFESSIONAL ISSUES}
+\renewcommand{\currentchapter}{SOCIAL, LEGAL, ETHICAL AND PROFESSIONAL ISSUES}
+\input{chapters/slep}
+
+\chapter{DESIGN}
+\renewcommand{\currentchapter}{DESIGN}
+\input{chapters/design}
+
+\chapter{IMPLEMENTATION}
+\renewcommand{\currentchapter}{IMPLEMENTATION}
+\input{chapters/implementation}
+
+\chapter{TESTING}
+\renewcommand{\currentchapter}{TESTING}
+\input{chapters/testing}
+
+\chapter{CRITICAL EVALUATION}
+\renewcommand{\currentchapter}{CRITICAL EVALUATION}
+\input{chapters/critical_evaluation}
+
+\chapter{CONCLUSION}
+\renewcommand{\currentchapter}{CONCLUSION}
+\input{chapters/conclusion}
+
+% --------------------------
+% References
+% Not counted in 100 page limit
+% --------------------------
+% \chapter*{REFERENCES}
+% \addcontentsline{toc}{chapter}{REFERENCES}
+\input{sections/references}
+
+% --------------------------
+% Appendices
+% Not counted in 100 page limit
+% --------------------------
+\chapter*{APPENDICES}
+\renewcommand{\currentchapter}{APPENDICES}
+\addcontentsline{toc}{chapter}{APPENDICES}
+\input{sections/appendices}
+
+\end{document}

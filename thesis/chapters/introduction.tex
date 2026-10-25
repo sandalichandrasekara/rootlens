@@ -1,0 +1,156 @@
+% chapter1_introduction.tex
+
+\section{Chapter Overview}
+This chapter introduces \textbf{RootLens}, a proof-of-concept hybrid Root Cause Analysis (RCA) system for automated diagnosis of event-driven autoscaling delays in \textbf{Kubernetes} clusters. The core problem addressed is the absence of any automated, confidence-quantified mechanism that can identify why a scaling event failed to produce ready pods within acceptable time frames, a gap that forces Site Reliability Engineers (SREs) to perform slow, manual, error-prone diagnosis.
+
+RootLens resolves this through a core hybrid pipeline combining a \textbf{rule-based engine} with three category-specific \textbf{Random Forest} ML explainer models and a \textbf{confidence score} combination model. The primary output is a structured JSON diagnosis exposed via a Go REST API. An interactive dashboard provides an additional visualisation layer for the same results, and a \textbf{Kubernetes Operator} demonstrates automated deployment as a supplementary component. This chapter establishes the research background, problem definition, research questions, aims, objectives, and scope that guided the design and evaluation of the system.
+
+\section{Problem Background}
+The rapid adoption of containerised microservices, orchestrated by Kubernetes (Burns et al., 2016), has changed how modern applications are deployed and scaled. Organisations increasingly rely on event-driven autoscalers such as \textbf{KEDA} (KEDA Project, 2023) to handle workload variability. However, several independent subsystems must interact successfully before a newly created pod can accept work, and delays manifest as three operationally significant categories. \textbf{Cold Start Latency} describes the time to pull a container image, execute init containers, and pass readiness probes before Kubernetes marks a pod as ready (Wang et al., 2018; Rattihalli et al., 2019). \textbf{Scheduling Contention} describes delays when the scheduler cannot assign a pod due to insufficient resources or conflicting affinity and taint rules (Burns et al., 2016). \textbf{Metric Propagation Lag} describes the latency between an event such as a queue depth spike and KEDA's detection of it, caused by polling intervals and metric server scraping delays (Prometheus Authors, 2023). These delays can cause messages to accumulate beyond thresholds, degrade end-user latency, and effectively defeat the purpose of autoscaling (Pelletier, Tundo and Tamburri, 2020; Beyer et al., 2016). Despite their critical nature, the Kubernetes ecosystem provides no built-in mechanism to automatically diagnose which factor caused a given scaling delay, how confident the diagnosis is, or what corrective action should be taken. Existing tools such as Prometheus (Prometheus Authors, 2023) provide raw telemetry but require expert manual interpretation. This operational gap motivated the design of RootLens.
+
+\section{Problem Definition}
+The core problem addressed by this research is the absence of automated, intelligent root cause analysis for KEDA-triggered scaling events in Kubernetes clusters. When a pod fails to become ready within an acceptable time window following a scaling event, operators must manually examine Kubernetes events, pod logs, KEDA ScaledObject state, and monitoring dashboards to hypothesise about the root cause. This manual process is inherently reactive, slow, and dependent on operator expertise (Soldani and Brogi, 2022). No existing tool integrates timing-signal analysis across the full KEDA scaling chain from metric trigger through scheduler assignment to container readiness, and produces a classified, confidence-quantified diagnosis automatically.
+
+\subsection{Problem Statement}
+\textit{Existing Kubernetes monitoring tools lack automated, confidence-quantified root cause analysis for event-driven autoscaling delays, forcing Site Reliability Engineers to perform slow and error-prone manual diagnosis that prolongs service degradation during scaling events.}
+
+\section{Research Motivation}
+Autoscaling failures are among the most common sources of latency incidents in cloud-native systems (Soldani and Brogi, 2022; Pelletier, Tundo and Tamburri, 2020), and engineers spend significant on-call time diagnosing rather than resolving incidents (Beyer et al., 2016). The challenge is acute in KEDA-based systems because KEDA spans multiple subsystems whose interactions produce emergent diagnostic complexity. Automated RCA can compress diagnosis time from minutes to seconds, while ML-based sub-cause classification can distinguish fine-grained causes that deterministic rules alone cannot reliably differentiate.
+
+\section{Existing Work}
+Chapter~2 provides a detailed critical review. In summary, existing RCA frameworks (Ma et al., 2020; Meng et al., 2020) target request-level failures requiring service dependency graphs unavailable during autoscaling. ML-based Kubernetes work (Toka, Varga and Marosi, 2021) applies to proactive scaling decisions rather than reactive diagnosis. Cold start studies (Wang et al., 2018; Rattihalli et al., 2019) quantify the phenomenon without automated classification. Pelletier, Tundo and Tamburri (2020) categorises autoscaling failure modes but offers no diagnostic tool or confidence quantification.
+
+\section{Research Gap}
+The specific gap identified from the existing work is: \textbf{No existing system provides automated, confidence-quantified root cause classification for KEDA-triggered Kubernetes scaling delays across the three categories of cold start latency, scheduling contention, and metric propagation lag, with sub-cause granularity validated against real fault-injection experimental data.}
+
+\section{Contribution to Body of Knowledge}
+This research makes three specific contributions to the body of knowledge in cloud-native systems observability and applied machine learning:
+
+\begin{enumerate}
+    \item \textbf{A formal three-category RCA taxonomy for KEDA-triggered scaling delays}, with defined timing signal thresholds and sub-cause hierarchies validated against real Kubernetes experimental data.
+    \item \textbf{A hybrid confidence combination model} (60\% rule-based, 40\% ML) that provably outperforms both rule-only and ML-only baselines in terms of accuracy, reliability, and graceful degradation.
+    \item \textbf{A real kubernetes fault-injection dataset} comprising 30 labelled experiments across three root cause categories, generated on Minikube with KEDA 2.15 and RabbitMQ, made available for future research. This addresses challenge~5 (real data scarcity), as no comparable labelled dataset exists in the literature for KEDA autoscaling delays.
+\end{enumerate}
+
+These contributions are technically difficult because they require orchestrating data collection across four heterogeneous APIs (Kubernetes, KEDA, RabbitMQ, Prometheus), engineering cross-language ML integration between Go and Python with sub-200ms latency, and generating ground-truth labelled data through controlled chaos engineering experiments. The practical significance is that RootLens compresses the mean time to diagnosis from minutes of manual investigation to sub-200 milliseconds of automated classification, directly reducing incident response time for SRE teams managing KEDA-based workloads.
+
+\section{Research Challenges}
+The following five technical challenges shaped the design and implementation of RootLens:
+
+\begin{enumerate}
+    \item \textbf{Signal Extraction Complexity:} Extracting meaningful timing signals from Kubernetes events, KEDA state, and pod lifecycle data requires orchestrating multiple API calls and synchronising timestamps across subsystems with heterogeneous internal clocks.
+    \item \textbf{Category Boundary Ambiguity:} The three root cause categories are not mutually exclusive in real scenarios; a pod may experience both scheduling delay and cold start delay simultaneously, requiring a classification model that handles overlapping evidence.
+    \item \textbf{Feature-Scaler Synchronisation:} Maintaining exact consistency between the features used during model training and the features extracted at inference time across two independently deployed services (Go and Python) required careful engineering discipline.
+    \item \textbf{Graceful Degradation:} The system must continue to function and provide useful diagnostics even when the ML explainer service is unavailable, requiring a fallback architecture that preserves the rule-based classification path.
+    \item \textbf{Real Data Scarcity:} Generating sufficient ground-truth labelled data from real Kubernetes fault-injection experiments (Basiri et al., 2016), rather than synthetic simulation, required significant effort in experimental design and cluster management.
+\end{enumerate}
+
+\section{Research Questions}
+This research is guided by four specific research questions:
+
+\begin{itemize}
+    \item \textbf{RQ1:} What timing signals and thresholds can reliably classify KEDA-triggered Kubernetes autoscaling delays into the categories of cold start latency, scheduling contention, and metric propagation lag using deterministic rules?
+    \item \textbf{RQ2:} What feature sets best characterise sub-cause distinctions within each root cause category for Random Forest classification, and what minimum training data is required for reliable performance?
+    \item \textbf{RQ3:} What weighting between rule-based confidence and ML confidence produces the optimal final confidence score in terms of accuracy, calibration, and resilience?
+    \item \textbf{RQ4:} How does the RootLens hybrid approach compare to rule-only and ML-only baselines in terms of root cause accuracy, sub-cause accuracy, latency, and confidence calibration?
+\end{itemize}
+
+\section{Research Aim}
+The aim of this research is to design, implement, and evaluate a hybrid root cause analysis system that automatically classifies the cause of KEDA-triggered Kubernetes autoscaling delays with quantified confidence, providing sub-cause granularity through category-specific machine learning explainer models trained on real fault-injection experimental data.
+
+\section{Research Objectives}
+The following table maps the research objectives to the research questions and the learning outcomes.
+
+\begin{xltabular}{\textwidth}{|p{2.5cm}|p{3.5cm}|X|p{1.8cm}|p{1.5cm}|}
+
+\hline
+\textbf{Objective Area} & \textbf{Research Objective} & \textbf{Description} & \textbf{LOs Mapped} & \textbf{RQ Mapped} \\ \hline
+\endhead
+Literature Review & RO1: Identify and critically analyse existing RCA and autoscaling approaches & Systematic review of 20+ papers on RCA, autoscaling, cold start, and Kubernetes observability & LO1, LO2 & RQ1, RQ4 \\ \hline
+Requirements & RO2: Elicit and specify system requirements & Gather requirements via literature review, questionnaire survey, and prototype feedback; produce SRS with MoSCoW prioritisation & LO1, LO3 & RQ1 \\ \hline
+Rule-Based RCA & RO3: Design and implement the deterministic rule-based RCA engine & Define timing signal thresholds for three categories; implement classification logic in Go 1.25 & LO3, LO4 & RQ1, RQ3 \\ \hline
+ML Integration & RO4: Design, train, and evaluate three category-specific Random Forest explainer models & Engineer features, collect real fault-injection training data, train models, achieve target sub-cause accuracy & LO3, LO4 & RQ2, RQ3 \\ \hline
+Confidence Model & RO5: Implement and validate the 60/40 hybrid confidence combination model & Implement weighted combination; validate against baselines across 30 controlled experiments & LO4, LO5 & RQ3, RQ4 \\ \hline
+System Integration & RO6: Integrate all components into a deployable microservice system & Implement Go API, Flask service, React dashboard, and Kubernetes Operator; validate end-to-end & LO4, LO5 & RQ4 \\ \hline
+Evaluation & RO7: Evaluate RootLens against defined accuracy, latency, and confidence targets & Conduct 30 fault-injection experiments; compare hybrid vs rule-only vs ML-only baselines & LO4, LO5 & RQ4 \\ \hline
+Documentation & RO8: Document the system design, implementation, and evaluation findings & Produce thesis, API documentation, and deployment guides & LO1, LO2 & \\ \hline
+
+\caption{Research Objectives Mapped to Learning Outcomes and Research Questions}
+\label{tab:research_objectives}
+\end{xltabular}
+
+\section{Project Scope}
+
+\subsection{In Scope}
+The following are within the scope of this research:
+
+\textbf{Core Components (Primary Research Contribution):}
+\begin{itemize}
+    \item Automated detection and classification of KEDA-triggered autoscaling delays into three root cause categories: cold start latency, scheduling contention, and metric propagation lag.
+    \item Sub-cause classification within each category using category-specific Random Forest models.
+    \item Confidence quantification using a 60\% rule-based / 40\% ML weighted model.
+    \item Real-time data collection from Kubernetes API, KEDA ScaledObject state, pod events, and RabbitMQ metrics.
+    \item A Go REST API exposing structured JSON RCA results as the primary system output.
+    \item Graceful degradation to rule-based analysis when the ML service is unavailable.
+    \item Evaluation on Minikube with KEDA and a RabbitMQ workload.
+\end{itemize}
+
+\textbf{Additional Components:}
+\begin{itemize}
+    \item A web dashboard providing a visual interface to the same JSON output, including RCA history, confidence scores, and sub-cause breakdowns.
+    \item A \textbf{Kubernetes Operator} (kubebuilder v4) for automated deployment, developed to demonstrate deployment readiness of the core system.
+\end{itemize}
+
+\subsection{Out of Scope}
+The following are explicitly outside the scope of this research:
+\begin{itemize}
+    \item Automated remediation or self-healing in response to diagnosed root causes.
+    \item Support for event sources other than RabbitMQ (Ex: Kafka, Azure Service Bus).
+    \item Multi-cluster federation or cross-cluster RCA.
+    \item User authentication, multi-tenant access control, or persistent storage beyond the in-memory ring buffer.
+\end{itemize}
+
+\section{Hardware and Software Requirements}
+The following tables summarise the hardware and software requirements for the development and evaluation of RootLens.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Component} & \textbf{Specification} & \textbf{Purpose} \\ \hline
+Development Machine & Apple M-series, 16 GB RAM, 512 GB SSD & Code development and compilation \\ \hline
+Minikube Cluster & 4 vCPUs, 8 GB RAM allocated & Kubernetes fault-injection experiments \\ \hline
+Docker Engine & Docker Desktop 4.x & Container builds and local orchestration \\ \hline
+\end{tabularx}
+\caption{Hardware Requirements}
+\label{tab:hardware_req}
+\end{table}
+
+\begin{xltabular}{\textwidth}{|p{3.5cm}|p{3.5cm}|X|}
+
+\hline
+\textbf{Software} & \textbf{Version} & \textbf{Purpose} \\ \hline
+\endfirsthead
+
+\hline
+\textbf{Software} & \textbf{Version} & \textbf{Purpose} \\ \hline
+\endhead
+
+Go & 1.2x & API server and Kubernetes Operator implementation \\ \hline
+Python & 3.x & ML explainer service (Flask) \\ \hline
+Node.js / npm & 20 LTS & React dashboard build toolchain \\ \hline
+React & 19 & Frontend dashboard \\ \hline
+scikit-learn & 1.x & Random Forest training and inference \\ \hline
+Kubernetes & 1.2x (Minikube) & Container orchestration and experiment platform \\ \hline
+KEDA & 2.1x & Event-driven autoscaler \\ \hline
+RabbitMQ & 3.1x & Message broker for workload simulation \\ \hline
+Prometheus & 2.4x & Metrics collection and scraping \\ \hline
+Docker Compose & 2.x & Development environment orchestration \\ \hline
+kubebuilder & v4 & Kubernetes Operator scaffolding \\ \hline
+
+\caption{Software Requirements}
+\label{tab:software_req}
+\end{xltabular}
+
+\section{Chapter Summary}
+This chapter established the research context for RootLens. The operational problem was defined and situated within the broader landscape of cloud-native observability. The specific research gap, that no existing system classifies KEDA autoscaling delay root causes with sub-cause granularity and hybrid confidence quantification, was identified. Four research questions, eight research objectives, and a clear project scope were defined. Chapter~2 presents a detailed critical review of the relevant literature.

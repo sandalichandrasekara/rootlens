@@ -1,0 +1,30 @@
+% ==========================
+% Abstract
+% ==========================
+\chapter*{Abstract}
+\markboth{Abstract}{}
+\addcontentsline{toc}{chapter}{Abstract}
+\setlength{\parindent}{0pt}
+
+\textit{\textbf{Problem:}} When KEDA-triggered Kubernetes scaling events produce pods that fail to become ready within acceptable time frames, Site Reliability Engineers have no automated tool to diagnose why. Existing monitoring solutions provide raw telemetry but lack intelligent root cause analysis tailored to KEDA-managed workloads.
+
+\vspace{1em}
+
+\textit{\textbf{Methodology:}} This research designed, implemented, and evaluated RootLens, a hybrid root cause analysis system combining a deterministic rule-based engine with three category-specific Random Forest ML classifiers. The rule-based engine categorizes scaling delays into Cold Start Latency, Scheduling Contention, or Metric Propagation Lag. Category-specific ML models, trained on real Kubernetes fault-injection data, then identify the specific sub-cause. A weighted confidence score combines rule-based and ML signals: 
+$C_{\text{final}} = (0.6 \times C_{\text{rule}}) + (0.4 \times C_{\text{ml}})$. 
+The system exposes results via a REST API, with a dashboard for visualization and a Kubernetes Operator for deployment automation.
+
+\vspace{1em}
+
+\textit{\textbf{Results:}} Evaluated across a dataset generated from 30 controlled fault-injection experiments, RootLens achieved 96.7\% root cause accuracy (95\% CI: 83.3--99.4\%), 86.7\% sub-cause accuracy, an average confidence of 0.764, and a mean RCA latency of 177 milliseconds. The system degrades gracefully to rule-based analysis during ML service unavailability. These findings validate that automated, confidence-quantified RCA for Kubernetes scaling delays is technically feasible, successfully compressing diagnostic time from minutes to sub-200 milliseconds.
+
+\vspace{2em}
+
+\textbf{Subject Descriptors:}\\
+Computer systems organization → Architectures → Distributed architectures → Cloud computing\\
+Computing methodologies → Machine learning → Machine learning approaches → Ensemble methods\\
+Software and its engineering → Software creation and management → Software verification and validation → Software defect analysis
+
+\vspace{2em}
+
+\textbf{Keywords:} Root Cause Analysis, Kubernetes Autoscaling, Observability, Machine Learning, Random Forest

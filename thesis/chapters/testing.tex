@@ -1,0 +1,221 @@
+% Chapter 8: Testing
+
+\section{Chapter Overview}
+This chapter presents the comprehensive testing and evaluation strategy for \textbf{RootLens}, a Kubernetes-native diagnostic system designed to identify root causes of scaling delays in KEDA-managed workloads. The evaluation directly addresses the research aim and research questions defined in Chapter~1, particularly focusing on the effectiveness of timing signals (RQ1) and feature-based classification of sub-causes (RQ2).
+
+Testing was conducted across three primary phases: (i) automated testing, including unit, integration, and deployment validation, (ii) controlled fault-injection experiments using a custom workload generation pipeline, and (iii) expert user evaluation based on real-world DevOps feedback. All automated tests passed successfully, and experiments were conducted in a controlled and reproducible Kubernetes environment.
+
+\section{Testing Criteria}
+The following types of testing were conducted to evaluate RootLens comprehensively:
+
+\begin{itemize}
+    \item \textbf{Automated Testing:} Unit tests, integration tests, and deployment validation to verify individual components and their interactions.
+    \item \textbf{Model Testing:} Controlled fault-injection experiments to evaluate the accuracy of the rule-based engine and ML explainer models against ground-truth labels.
+    \item \textbf{Functional Testing:} Verification that each functional requirement specified in Chapter~4 is correctly implemented.
+    \item \textbf{Non-Functional Testing:} Evaluation of accuracy, performance (latency), reliability (graceful degradation), and security against NFR targets.
+    \item \textbf{User Evaluation:} Expert feedback from domain and technical practitioners via a structured questionnaire.
+\end{itemize}
+
+\section{Experimental Setup and Environment}
+All experiments were conducted within a controlled local Kubernetes environment to ensure reproducibility and consistency. The system was deployed on a Minikube cluster, with RabbitMQ acting as the event source for KEDA-based autoscaling.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Component} & \textbf{Specification / Version} \\ \hline
+Hardware Platform & macOS Darwin (4 vCPUs, 8\,GB RAM allocated) \\ \hline
+Cluster Environment & Minikube running Kubernetes \\ \hline
+Core Technologies & KEDA, RabbitMQ \\ \hline
+System Components & Kubernetes Controller, CLI Tool, Dashboard Interface \\ \hline
+Development Tools & kubectl, Kubernetes Lens \\ \hline
+Languages Used & Go, Python, JavaScript \\ \hline
+\end{tabularx}
+\caption{Experimental Environment Configuration}
+\label{tab:test_env}
+\end{table}
+
+RootLens operates as a hybrid system consisting of a Kubernetes controller, a CLI-based diagnostic interface, and a dashboard for visualization. Observability signals were collected using Kubernetes logs and cluster events via \texttt{kubectl}.
+
+\subsection{Fault Simulation and Dataset Generation}
+To evaluate RootLens under controlled conditions, a custom fault-injection pipeline was developed. A Python-based workload generator dynamically created and terminated pods under predefined scaling delay scenarios. During execution, relevant timing signals and system events were captured and stored in structured JSON format.
+
+This dataset was subsequently used for feature extraction and machine learning model training, enabling the system to learn discriminative patterns associated with different scaling delay causes.
+
+\section{Automated Testing Strategy}
+
+\subsection{Unit Testing}
+Unit testing was conducted to validate individual components of the system in isolation, including the Kubernetes controller logic, root cause analysis engine, data collection mechanisms, and ML feature extraction modules. All unit tests executed successfully, achieving a 100\% pass rate.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|X|l|c|}
+\hline
+\textbf{Module} & \textbf{Test Objective} & \textbf{Expected Outcome} & \textbf{Status} \\ \hline
+RCA Engine & Detect cold start conditions & Correct classification & PASS \\ \hline
+Controller Logic & Resource reconciliation & CRDs created correctly & PASS \\ \hline
+Data Extractors & Handle missing or noisy data & Clean feature output & PASS \\ \hline
+ML Pipeline & Infer sub-cause from features & Accurate prediction & PASS \\ \hline
+\end{tabularx}
+\caption{Representative Unit Testing Results}
+\label{tab:unit_tests_sample}
+\end{table}
+
+\subsection{Integration Testing}
+Integration testing validated the interaction between system components, particularly the pipeline connecting Kubernetes event collection, rule-based analysis, and ML-based sub-cause inference.
+
+A hybrid confidence mechanism was implemented to combine rule-based and ML-based predictions:
+
+\[
+Final = (Rule \times 0.6) + (ML \times 0.4)
+\]
+
+When ML confidence falls below a predefined threshold, the system defaults to rule-based predictions to maintain reliability.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|X|c|c|c|c|}
+\hline
+\textbf{Scenario} & \textbf{Root Cause} & \textbf{Rule} & \textbf{ML} & \textbf{Final} & \textbf{Status} \\ \hline
+Cold Start & POD\_COLD\_START & 0.85 & 0.92 & 0.88 & PASS \\ \hline
+Scheduling & SCHEDULING\_CONTENTION & 0.80 & 0.71 & 0.76 & PASS \\ \hline
+Metric Delay & METRIC\_PROPAGATION\_LAG & 0.75 & 0.77 & 0.76 & PASS \\ \hline
+\end{tabularx}
+\caption{Integration Testing of Hybrid RCA Pipeline}
+\label{tab:integration_tests}
+\end{table}
+
+\subsection{Deployment Validation}
+Deployment validation ensured that RootLens could be reliably deployed within a Kubernetes environment. This included validation of controller deployment, configuration correctness, and system startup behaviour. All deployment checks were successfully completed.
+
+\section{Fault-Injection Experiments}
+
+\subsection{Experimental Design}
+A total of 30 controlled experiments were conducted, covering three primary scaling delay categories:
+
+\begin{itemize}
+    \item Cold Start Delays
+    \item Scheduling Delays
+    \item Metric Propagation Delays
+\end{itemize}
+
+Each experiment involved generating workload bursts via RabbitMQ, triggering KEDA-based scaling, and capturing RootLens diagnostic outputs.
+
+\subsection{Evaluation Metrics}
+The following metrics were used:
+
+\begin{itemize}
+    \item Root cause accuracy
+    \item Sub-cause accuracy
+    \item Diagnostic latency
+\end{itemize}
+
+\subsection{Results}
+RootLens demonstrated strong performance across all categories.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+\hline
+\textbf{Category} & \textbf{Root Cause Acc.} & \textbf{Sub-Cause Acc.} & \textbf{Avg Confidence} & \textbf{Latency} \\ \hline
+Cold Start & 100\% & 90\% & 0.832 & $\sim$200ms \\ \hline
+Scheduling & 100\% & 90\% & 0.764 & $\sim$170ms \\ \hline
+Metric Delay & 90\% & 80\% & 0.696 & $\sim$160ms \\ \hline
+\textbf{Overall} & \textbf{96.7\%} & \textbf{86.7\%} & \textbf{0.764} & \textbf{$\sim$177ms} \\ \hline
+\end{tabularx}
+\caption{Fault-Injection Experiment Results}
+\label{tab:results_summary}
+\end{table}
+
+\subsection{Confusion Matrix}
+Table~\ref{tab:confusion_matrix} presents the confusion matrix for root cause classification across the 30 fault-injection experiments.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|X|c|c|c|c|}
+\hline
+\textbf{Actual $\backslash$ Predicted} & \textbf{Cold Start} & \textbf{Scheduling} & \textbf{Metric Prop.} & \textbf{Total} \\ \hline
+\textbf{Cold Start} & 10 & 0 & 0 & 10 \\ \hline
+\textbf{Scheduling} & 0 & 10 & 0 & 10 \\ \hline
+\textbf{Metric Prop.} & 0 & 1 & 9 & 10 \\ \hline
+\end{tabularx}
+\caption{Root Cause Classification Confusion Matrix ($n=30$)}
+\label{tab:confusion_matrix}
+\end{table}
+
+The single misclassification occurred in experiment~MP-07, where scheduling contention and metric propagation lag co-occurred. The dominant scheduling signal ($D_{\text{sched}} = 14.2$s) exceeded its threshold before the metric lag signal ($D_{\text{lag}} = 52.1$s) was evaluated, causing the priority-ordered decision tree to classify the event as Scheduling Contention rather than Metric Propagation Lag. This reveals a structural limitation of the sequential rule evaluation when multiple delay categories co-occur.
+
+\subsection{Confidence Intervals}
+Using the Wilson score interval at the 95\% confidence level, root cause accuracy of 29/30 yields a confidence interval of 83.3\%--99.4\%. Sub-cause accuracy of 26/30 yields a confidence interval of 70.3\%--94.7\%. While the point estimates exceed the NFR targets, the lower bounds of these intervals reflect the inherent uncertainty of a 30-experiment evaluation.
+
+\subsection{Discussion}
+The system achieved high root cause accuracy across all categories, demonstrating that timing-based signals are effective indicators of scaling delays (RQ1). Sub-cause classification performance further validates the use of feature-based ML approaches (RQ2). The confusion matrix confirms that misclassifications are isolated to overlapping fault scenarios rather than systematic weaknesses, indicating areas for future improvement through multi-label classification.
+
+\section{User Evaluation}
+A preliminary user evaluation was conducted using a structured Google Form distributed alongside a system demonstration video. Participants included senior DevOps engineers and industry practitioners with Kubernetes experience. Responses indicated strong agreement on usefulness and industry relevance, with suggestions for improved visualisation. The full critical evaluation, including detailed expert and domain feedback, evaluator profiles, and limitations analysis, is presented in Chapter~9.
+
+\section{Functional Testing}
+Functional testing was conducted to verify that each functional requirement defined in Chapter~4 is correctly implemented. Test cases were derived directly from the functional requirements and executed against the deployed system. The full set of functional test cases is provided in Appendix~D.
+
+\begin{xltabular}{\textwidth}{|p{1.5cm}|X|p{2cm}|}
+
+\hline
+\textbf{Req. ID} & \textbf{Test Description} & \textbf{Result} \\ \hline
+\endfirsthead
+
+\hline
+\textbf{Req. ID} & \textbf{Test Description} & \textbf{Result} \\ \hline
+\endhead
+
+FR01 & Automatically detect KEDA-triggered scaling events via Kubernetes API & PASS \\ \hline
+FR02 & Collect timing signals from pod lifecycle events (image pull, scheduling, readiness) & PASS \\ \hline
+FR03 & Classify each scaling delay into one of three root cause categories & PASS \\ \hline
+FR04 & Extract category-specific feature vector (15/11/10 features) & PASS \\ \hline
+FR05 & Invoke category-specific ML explainer and receive sub-cause prediction & PASS \\ \hline
+FR06 & Compute final confidence score using 60/40 weighted combination & PASS \\ \hline
+FR07 & Store RCA results in in-memory ring buffer (capacity 50) & PASS \\ \hline
+FR08 & Expose REST API endpoint returning most recent RCA result as JSON & PASS \\ \hline
+FR09 & Expose REST API endpoint returning all stored RCA results as JSON & PASS \\ \hline
+FR10 & Expose REST API endpoint returning aggregate statistics & PASS \\ \hline
+FR11 & Dashboard displays root cause, sub-cause, confidence, and feature importance & PASS \\ \hline
+FR12 & Dashboard displays historical trend chart of confidence and root cause distribution & PASS \\ \hline
+FR13 & Graceful degradation to rule-based analysis when ML service is unavailable & PASS \\ \hline
+FR14 & Health check endpoint indicating status of all components & PASS \\ \hline
+FR15 & Kubernetes Operator deploys full system from a single CRD & PASS \\ \hline
+
+\caption{Functional Testing Results}
+\label{tab:functional_testing}
+\end{xltabular}
+
+All 15 functional requirements passed testing, achieving a \textbf{100\% pass rate}.
+
+\section{Non-Functional Testing}
+Non-functional testing evaluated the system against the quality attributes specified in Chapter~4.
+
+\subsection{Accuracy Testing}
+Root cause accuracy was evaluated at 96.7\% across 30 controlled experiments (Section~8.4). Sub-cause accuracy was measured at 86.7\%. Both exceed the specified NFR targets of $\geq$95\% (NFR02) and $\geq$80\% (NFR03) respectively.
+
+\subsection{Performance Testing}
+Mean diagnostic latency was measured at 177ms across all 30 experiments, well within the $<$300ms NFR01 target. The rule-based engine alone completes in $\sim$12ms; the additional latency is attributable to the ML service HTTP round-trip ($\sim$165ms).
+
+\subsection{Reliability and Availability}
+Graceful degradation was validated by terminating the ML service container during active diagnosis. The system automatically fell back to rule-based analysis with no API errors, returning results with \texttt{method\_agreement="ml\_unavailable"}. Recovery was automatic upon ML service restart.
+
+\subsection{Security Testing}
+A security audit identified and remediated hardcoded credentials across eight configuration files. All credentials were replaced with environment variable references and Kubernetes Secret objects. CORS is configured to allow only the dashboard origin. No sensitive data is exposed in API responses.
+
+\section{Limitations of the Testing Process}
+The following limitations are acknowledged in the testing process:
+
+\begin{enumerate}
+    \item \textbf{Controlled environment only:} All experiments were conducted on a single-node Minikube cluster. Multi-node production clusters with different hardware characteristics may produce different results.
+    \item \textbf{Single event source:} Testing was limited to RabbitMQ as the KEDA event source. Other scalers (Kafka, AWS SQS) were not tested.
+    \item \textbf{Small sample size:} 30 experiments, while sufficient for demonstrating the approach, produce wide confidence intervals (95\% CI: 83.3-99.4\% for root cause accuracy).
+    \item \textbf{No long-duration testing:} The system was not stress-tested over extended periods, so potential issues such as memory growth or model drift were not assessed.
+    \item \textbf{Limited user evaluation sample:} Ten evaluators provide informed but not statistically generalisable feedback.
+\end{enumerate}
+
+\section{Chapter Summary}
+This chapter presented a comprehensive evaluation of RootLens through automated testing (unit, integration, deployment), controlled fault-injection experiments, functional testing, non-functional testing, and expert feedback. The system achieved 96.7\% root cause accuracy, 86.7\% sub-cause accuracy, and 177ms mean latency, meeting all specified NFR targets. All 15 functional requirements passed testing. The limitations of the testing process, including the controlled environment and small sample size, are acknowledged. These findings are critically evaluated in Chapter~9.

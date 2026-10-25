@@ -1,0 +1,144 @@
+# RootLens - Deploy to Google Cloud Run
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: durable-woods-490318-j6
+  REGION: asia-south1
+  RABBITMQ_HOST: ${{ secrets.RABBITMQ_HOST }}
+  RABBITMQ_USERNAME: ${{ secrets.RABBITMQ_USERNAME }}
+  RABBITMQ_VHOST: ${{ secrets.RABBITMQ_VHOST }}
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Auth GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build ML and API (parallel)
+        run: |
+          echo "Starting parallel builds..."
+
+          # ML build in background
+          docker buildx build \
+            --platform linux/amd64 \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from gcr.io/${{ env.PROJECT_ID }}/rootlens-ml:latest \
+            -t gcr.io/${{ env.PROJECT_ID }}/rootlens-ml:${{ github.sha }} \
+            -t gcr.io/${{ env.PROJECT_ID }}/rootlens-ml:latest \
+            -f ml-integration/Dockerfile \
+            ml-integration/ \
+            --output type=image,push=false --load &
+          ML_PID=$!
+
+          # API build in background
+          docker buildx build \
+            --platform linux/amd64 \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from gcr.io/${{ env.PROJECT_ID }}/rootlens-api:latest \
+            -t gcr.io/${{ env.PROJECT_ID }}/rootlens-api:${{ github.sha }} \
+            -t gcr.io/${{ env.PROJECT_ID }}/rootlens-api:latest \
+            -f Dockerfile.api \
+            . \
+            --output type=image,push=false --load &
+          API_PID=$!
+
+          # Wait for both to complete
+          wait $ML_PID
+          echo "ML build complete"
+          wait $API_PID
+          echo "API build complete"
+
+      - name: Push ML and API (parallel)
+        run: |
+          docker push gcr.io/${{ env.PROJECT_ID }}/rootlens-ml:${{ github.sha }} &
+          docker push gcr.io/${{ env.PROJECT_ID }}/rootlens-ml:latest &
+          docker push gcr.io/${{ env.PROJECT_ID }}/rootlens-api:${{ github.sha }} &
+          docker push gcr.io/${{ env.PROJECT_ID }}/rootlens-api:latest &
+          wait
+
+      - name: Deploy ML Service
+        run: |
+          gcloud run deploy rootlens-ml \
+            --image gcr.io/${{ env.PROJECT_ID }}/rootlens-ml:${{ github.sha }} \
+            --region ${{ env.REGION }} \
+            --platform managed \
+            --allow-unauthenticated \
+            --memory 1Gi \
+            --port 8080 \
+            --set-env-vars "FLASK_DEBUG=false"
+
+      - name: Deploy API
+        run: |
+          ML_URL=$(gcloud run services describe rootlens-ml --region ${{ env.REGION }} --format 'value(status.url)')
+          DASHBOARD_URL=$(gcloud run services describe rootlens-dashboard --region ${{ env.REGION }} --format 'value(status.url)' 2>/dev/null || echo "https://rootlens.xyz")
+
+          gcloud run deploy rootlens-api \
+            --image gcr.io/${{ env.PROJECT_ID }}/rootlens-api:${{ github.sha }} \
+            --region ${{ env.REGION }} \
+            --platform managed \
+            --allow-unauthenticated \
+            --memory 256Mi \
+            --port 8080 \
+            --set-env-vars "ML_SERVICE_URL=${ML_URL},ML_ENABLED=true,ALLOWED_ORIGIN=${DASHBOARD_URL},RABBITMQ_HOST=${{ env.RABBITMQ_HOST }},RABBITMQ_PORT=5671,RABBITMQ_USERNAME=${{ env.RABBITMQ_USERNAME }},RABBITMQ_PASSWORD=${{ secrets.CLOUDAMQP_PASSWORD }},RABBITMQ_VHOST=${{ env.RABBITMQ_VHOST }},RABBITMQ_TLS=true,RABBITMQ_QUEUE=rootlens-queue"
+
+      - name: Build Dashboard
+        run: |
+          API_URL=$(gcloud run services describe rootlens-api --region ${{ env.REGION }} --format 'value(status.url)')
+
+          docker buildx build \
+            --platform linux/amd64 \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from gcr.io/${{ env.PROJECT_ID }}/rootlens-dashboard:latest \
+            --build-arg REACT_APP_API_URL=${API_URL} \
+            -t gcr.io/${{ env.PROJECT_ID }}/rootlens-dashboard:${{ github.sha }} \
+            -t gcr.io/${{ env.PROJECT_ID }}/rootlens-dashboard:latest \
+            -f dashboard/Dockerfile \
+            dashboard/ \
+            --load
+
+      - name: Push and Deploy Dashboard
+        run: |
+          docker push gcr.io/${{ env.PROJECT_ID }}/rootlens-dashboard:${{ github.sha }}
+          docker push gcr.io/${{ env.PROJECT_ID }}/rootlens-dashboard:latest
+
+          gcloud run deploy rootlens-dashboard \
+            --image gcr.io/${{ env.PROJECT_ID }}/rootlens-dashboard:${{ github.sha }} \
+            --region ${{ env.REGION }} \
+            --platform managed \
+            --allow-unauthenticated \
+            --memory 256Mi \
+            --port 3000
+
+      - name: Summary
+        run: |
+          DASHBOARD=$(gcloud run services describe rootlens-dashboard --region ${{ env.REGION }} --format 'value(status.url)')
+          API=$(gcloud run services describe rootlens-api --region ${{ env.REGION }} --format 'value(status.url)')
+          ML=$(gcloud run services describe rootlens-ml --region ${{ env.REGION }} --format 'value(status.url)')
+          echo "## Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "| Service | URL |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|-----|" >> $GITHUB_STEP_SUMMARY
+          echo "| Dashboard | ${DASHBOARD} |" >> $GITHUB_STEP_SUMMARY
+          echo "| API | ${API} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ML | ${ML} |" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,292 @@
+[
+  {
+    "timestamp": "2026-03-14T11:55:33.394380",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: experiment=scheduling",
+    "pod_name": "taint-test-0",
+    "scheduling_duration_seconds": 30.941753149032593,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {experiment: scheduling}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "experiment",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T11:56:11.784897",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: dedicated=test",
+    "pod_name": "taint-test-1",
+    "scheduling_duration_seconds": 30.916377067565918,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {dedicated: test}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "dedicated",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T11:56:50.105301",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: special=true",
+    "pod_name": "taint-test-2",
+    "scheduling_duration_seconds": 30.857051134109497,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {special: true}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "special",
+    "taint_effect": "NoExecute",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T11:57:28.469772",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: experiment=scheduling",
+    "pod_name": "taint-test-3",
+    "scheduling_duration_seconds": 30.94040298461914,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {experiment: scheduling}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "experiment",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T11:58:06.800322",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: dedicated=test",
+    "pod_name": "taint-test-4",
+    "scheduling_duration_seconds": 30.87649178504944,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {dedicated: test}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "dedicated",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T11:58:45.133286",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: special=true",
+    "pod_name": "taint-test-5",
+    "scheduling_duration_seconds": 30.895341873168945,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {special: true}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "special",
+    "taint_effect": "NoExecute",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T11:59:23.566329",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: experiment=scheduling",
+    "pod_name": "taint-test-6",
+    "scheduling_duration_seconds": 30.98983097076416,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {experiment: scheduling}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "experiment",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:00:01.942961",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: dedicated=test",
+    "pod_name": "taint-test-7",
+    "scheduling_duration_seconds": 30.958077907562256,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {dedicated: test}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "dedicated",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:00:40.362613",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: special=true",
+    "pod_name": "taint-test-8",
+    "scheduling_duration_seconds": 30.967969179153442,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {special: true}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "special",
+    "taint_effect": "NoExecute",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:01:18.694581",
+    "sub_cause": "taint_conflict",
+    "description": "Taint conflict: experiment=scheduling",
+    "pod_name": "taint-test-9",
+    "scheduling_duration_seconds": 30.916248083114624,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "TaintToleration",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) had untolerated taint {experiment: scheduling}. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "taint_key": "experiment",
+    "taint_effect": "NoSchedule",
+    "resource_pressure_score": 0.005
+  }
+]

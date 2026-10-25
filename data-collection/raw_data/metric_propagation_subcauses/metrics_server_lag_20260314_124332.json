@@ -1,0 +1,182 @@
+[
+  {
+    "timestamp": "2026-03-14T12:27:34.184412",
+    "sub_cause": "metrics_server_lag",
+    "description": "Large queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 500,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 500,
+      "description": "Large queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:29:19.843312",
+    "sub_cause": "metrics_server_lag",
+    "description": "Very large queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 1000,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 1000,
+      "description": "Very large queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:31:05.764850",
+    "sub_cause": "metrics_server_lag",
+    "description": "Medium queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 300,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 300,
+      "description": "Medium queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:32:51.588931",
+    "sub_cause": "metrics_server_lag",
+    "description": "High queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 750,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 750,
+      "description": "High queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:34:37.493971",
+    "sub_cause": "metrics_server_lag",
+    "description": "Large queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 500,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 500,
+      "description": "Large queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:36:23.457222",
+    "sub_cause": "metrics_server_lag",
+    "description": "Very large queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 1000,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 1000,
+      "description": "Very large queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:38:09.658608",
+    "sub_cause": "metrics_server_lag",
+    "description": "Medium queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 300,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 300,
+      "description": "Medium queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:39:55.733931",
+    "sub_cause": "metrics_server_lag",
+    "description": "High queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 750,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 750,
+      "description": "High queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:41:41.722078",
+    "sub_cause": "metrics_server_lag",
+    "description": "Large queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 500,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 500,
+      "description": "Large queue burst"
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:43:27.727146",
+    "sub_cause": "metrics_server_lag",
+    "description": "Very large queue burst",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 1000,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 1000,
+      "description": "Very large queue burst"
+    }
+  }
+]

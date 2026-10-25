@@ -1,0 +1,63 @@
+{
+  "feature_names": [
+    "image_pull_duration_seconds",
+    "image_pull_errors",
+    "is_first_pull_on_node",
+    "image_size_estimate_mb",
+    "init_container_count",
+    "init_container_duration_seconds",
+    "readiness_probe_failures",
+    "readiness_probe_period_seconds",
+    "readiness_probe_timeout_seconds",
+    "container_create_duration_seconds",
+    "total_cold_start_seconds",
+    "image_pull_ratio",
+    "init_container_ratio",
+    "probe_failure_rate",
+    "container_create_ratio"
+  ],
+  "sub_causes": [
+    "image_pull_latency",
+    "init_container_delay",
+    "readiness_probe_failure",
+    "container_runtime_slow",
+    "registry_timeout"
+  ],
+  "n_features": 15,
+  "n_classes": 5,
+  "total_samples": 50,
+  "splits": {
+    "train": {
+      "n_samples": 35,
+      "label_distribution": {
+        "container_runtime_slow": 7,
+        "image_pull_latency": 7,
+        "init_container_delay": 7,
+        "readiness_probe_failure": 7,
+        "registry_timeout": 7
+      }
+    },
+    "val": {
+      "n_samples": 7,
+      "label_distribution": {
+        "container_runtime_slow": 1,
+        "image_pull_latency": 2,
+        "init_container_delay": 1,
+        "readiness_probe_failure": 1,
+        "registry_timeout": 2
+      }
+    },
+    "test": {
+      "n_samples": 8,
+      "label_distribution": {
+        "container_runtime_slow": 2,
+        "image_pull_latency": 1,
+        "init_container_delay": 2,
+        "readiness_probe_failure": 2,
+        "registry_timeout": 1
+      }
+    }
+  },
+  "source_dir": "/Users/sandyyy/Documents/MyFYP/rootlens/data-collection/raw_data/cold_start_subcauses",
+  "created_at": "2026-03-14T08:25:57"
+}

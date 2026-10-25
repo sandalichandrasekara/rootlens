@@ -1,0 +1,282 @@
+[
+  {
+    "timestamp": "2026-03-14T12:09:14.488268",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-0",
+    "scheduling_duration_seconds": 0.031040191650390625,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-0 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:09:33.297838",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-1",
+    "scheduling_duration_seconds": 0.03062582015991211,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-1 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:09:52.501250",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-2",
+    "scheduling_duration_seconds": 0.03151416778564453,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-2 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:10:11.776367",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-3",
+    "scheduling_duration_seconds": 0.028367042541503906,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-3 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:10:30.984995",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-4",
+    "scheduling_duration_seconds": 0.03239583969116211,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-4 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:10:50.264029",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-5",
+    "scheduling_duration_seconds": 0.030761003494262695,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-5 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:11:09.479428",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-6",
+    "scheduling_duration_seconds": 0.028937101364135742,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-6 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:11:28.767110",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-7",
+    "scheduling_duration_seconds": 0.030550241470336914,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-7 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:11:47.982637",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-8",
+    "scheduling_duration_seconds": 0.030678987503051758,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-8 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:12:07.192521",
+    "sub_cause": "pdb_violation",
+    "description": "PDB with minAvailable=2",
+    "pod_name": "pdb-test-9",
+    "scheduling_duration_seconds": 0.029803991317749023,
+    "scheduling_attempts": 1,
+    "scheduled": true,
+    "scheduling_failure_reason": "",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned scheduling-test/pdb-test-9 to minikube",
+        "type": "Normal",
+        "count": 1
+      }
+    ],
+    "pdb_min_available": 2,
+    "resource_pressure_score": 0.005
+  }
+]

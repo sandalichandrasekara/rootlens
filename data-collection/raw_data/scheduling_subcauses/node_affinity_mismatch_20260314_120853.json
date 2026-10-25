@@ -1,0 +1,292 @@
+[
+  {
+    "timestamp": "2026-03-14T12:03:24.672611",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: zone=non-existent-zone",
+    "pod_name": "affinity-test-0",
+    "scheduling_duration_seconds": 30.956984996795654,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "zone",
+    "affinity_value": "non-existent-zone",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:04:00.867361",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: gpu=true",
+    "pod_name": "affinity-test-1",
+    "scheduling_duration_seconds": 30.886371850967407,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "gpu",
+    "affinity_value": "true",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:04:36.982095",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: special-hardware=quantum",
+    "pod_name": "affinity-test-2",
+    "scheduling_duration_seconds": 30.80828022956848,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "special-hardware",
+    "affinity_value": "quantum",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:05:13.227452",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: region=mars-west-1",
+    "pod_name": "affinity-test-3",
+    "scheduling_duration_seconds": 30.933834075927734,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "region",
+    "affinity_value": "mars-west-1",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:05:49.531856",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: zone=non-existent-zone",
+    "pod_name": "affinity-test-4",
+    "scheduling_duration_seconds": 31.006603002548218,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "zone",
+    "affinity_value": "non-existent-zone",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:06:25.767291",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: gpu=true",
+    "pod_name": "affinity-test-5",
+    "scheduling_duration_seconds": 30.92374610900879,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "gpu",
+    "affinity_value": "true",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:07:01.991037",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: special-hardware=quantum",
+    "pod_name": "affinity-test-6",
+    "scheduling_duration_seconds": 30.867929935455322,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "special-hardware",
+    "affinity_value": "quantum",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:07:38.308204",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: region=mars-west-1",
+    "pod_name": "affinity-test-7",
+    "scheduling_duration_seconds": 30.99037194252014,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "region",
+    "affinity_value": "mars-west-1",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:08:14.680795",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: zone=non-existent-zone",
+    "pod_name": "affinity-test-8",
+    "scheduling_duration_seconds": 31.04020619392395,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "zone",
+    "affinity_value": "non-existent-zone",
+    "resource_pressure_score": 0.005
+  },
+  {
+    "timestamp": "2026-03-14T12:08:50.882067",
+    "sub_cause": "node_affinity_mismatch",
+    "description": "Affinity mismatch: gpu=true",
+    "pod_name": "affinity-test-9",
+    "scheduling_duration_seconds": 30.884865045547485,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "NodeAffinityMismatch",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 1.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 50,
+    "memory_request_mb": 64,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "affinity_key": "gpu",
+    "affinity_value": "true",
+    "resource_pressure_score": 0.005
+  }
+]

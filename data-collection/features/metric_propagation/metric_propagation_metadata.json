@@ -1,0 +1,54 @@
+{
+  "feature_names": [
+    "metric_lag_seconds",
+    "keda_polling_interval_seconds",
+    "keda_cooldown_period_seconds",
+    "trigger_threshold",
+    "time_since_last_scale_seconds",
+    "queue_depth_at_lag",
+    "desired_vs_current_gap",
+    "hpa_sync_period_seconds",
+    "lag_to_polling_ratio",
+    "scale_responsiveness_score"
+  ],
+  "sub_causes": [
+    "metrics_server_lag",
+    "hpa_sync_delay",
+    "prometheus_scrape_gap",
+    "keda_polling_delay"
+  ],
+  "n_features": 10,
+  "n_classes": 4,
+  "total_samples": 40,
+  "splits": {
+    "train": {
+      "n_samples": 28,
+      "label_distribution": {
+        "hpa_sync_delay": 7,
+        "keda_polling_delay": 7,
+        "metrics_server_lag": 7,
+        "prometheus_scrape_gap": 7
+      }
+    },
+    "val": {
+      "n_samples": 6,
+      "label_distribution": {
+        "hpa_sync_delay": 1,
+        "keda_polling_delay": 2,
+        "metrics_server_lag": 1,
+        "prometheus_scrape_gap": 2
+      }
+    },
+    "test": {
+      "n_samples": 6,
+      "label_distribution": {
+        "hpa_sync_delay": 2,
+        "keda_polling_delay": 1,
+        "metrics_server_lag": 2,
+        "prometheus_scrape_gap": 1
+      }
+    }
+  },
+  "source_dir": "/Users/sandyyy/Documents/MyFYP/rootlens/data-collection/raw_data/metric_propagation_subcauses",
+  "created_at": "2026-03-14T08:26:17"
+}

@@ -1,0 +1,556 @@
+[
+  {
+    "timestamp": "2026-03-14T10:49:21.777928",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: python:3.11-slim",
+    "pod_name": "image-pull-test-0",
+    "created_at": "2026-03-14T05:18:03Z",
+    "ready_at": "2026-03-14T05:19:20+00:00",
+    "container_started_at": "2026-03-14T05:19:20+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 77.0,
+    "container_create_duration_seconds": 77.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-0 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"python:3.11-slim\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:18:04Z",
+        "last_timestamp": "2026-03-14T05:18:04Z"
+      },
+      {
+        "reason": "Pulled",
+        "message": "Successfully pulled image \"python:3.11-slim\" in 1m16.281s (1m16.281s including waiting). Image size: 149670686 bytes.",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:19:20Z",
+        "last_timestamp": "2026-03-14T05:19:20Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:19:20Z",
+        "last_timestamp": "2026-03-14T05:19:20Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:19:20Z",
+        "last_timestamp": "2026-03-14T05:19:20Z"
+      }
+    ],
+    "image_size_estimate_mb": 150,
+    "is_first_pull_on_node": 0.0,
+    "test_image": "python:3.11-slim",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T10:50:54.893797",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: node:18-slim",
+    "pod_name": "image-pull-test-1",
+    "created_at": "2026-03-14T05:20:01Z",
+    "ready_at": "2026-03-14T05:20:53+00:00",
+    "container_started_at": "2026-03-14T05:20:53+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 52.0,
+    "container_create_duration_seconds": 52.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-1 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"node:18-slim\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:20:01Z",
+        "last_timestamp": "2026-03-14T05:20:01Z"
+      },
+      {
+        "reason": "Pulled",
+        "message": "Successfully pulled image \"node:18-slim\" in 51.091s (51.091s including waiting). Image size: 214490806 bytes.",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:20:52Z",
+        "last_timestamp": "2026-03-14T05:20:52Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:20:53Z",
+        "last_timestamp": "2026-03-14T05:20:53Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:20:53Z",
+        "last_timestamp": "2026-03-14T05:20:53Z"
+      }
+    ],
+    "image_size_estimate_mb": 200,
+    "is_first_pull_on_node": 1.0,
+    "test_image": "node:18-slim",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T10:52:07.862740",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: nginx:latest",
+    "pod_name": "image-pull-test-2",
+    "created_at": "2026-03-14T05:21:34Z",
+    "ready_at": "2026-03-14T05:22:07+00:00",
+    "container_started_at": "2026-03-14T05:22:07+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 33.0,
+    "container_create_duration_seconds": 33.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-2 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"nginx:latest\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:21:35Z",
+        "last_timestamp": "2026-03-14T05:21:35Z"
+      },
+      {
+        "reason": "Pulled",
+        "message": "Successfully pulled image \"nginx:latest\" in 31.903s (31.903s including waiting). Image size: 180545980 bytes.",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:22:06Z",
+        "last_timestamp": "2026-03-14T05:22:06Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:22:07Z",
+        "last_timestamp": "2026-03-14T05:22:07Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:22:07Z",
+        "last_timestamp": "2026-03-14T05:22:07Z"
+      }
+    ],
+    "image_size_estimate_mb": 140,
+    "is_first_pull_on_node": 1.0,
+    "test_image": "nginx:latest",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T10:55:48.185352",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: python:3.11",
+    "pod_name": "image-pull-test-3",
+    "created_at": "2026-03-14T05:22:47Z",
+    "ready_at": null,
+    "container_started_at": null,
+    "phase": "Pending",
+    "total_cold_start_seconds": 0.0,
+    "container_create_duration_seconds": 0.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-3 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"python:3.11\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:22:47Z",
+        "last_timestamp": "2026-03-14T05:22:47Z"
+      }
+    ],
+    "image_size_estimate_mb": 900,
+    "is_first_pull_on_node": 1.0,
+    "test_image": "python:3.11",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T10:59:29.054900",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: node:18",
+    "pod_name": "image-pull-test-4",
+    "created_at": "2026-03-14T05:26:27Z",
+    "ready_at": null,
+    "container_started_at": null,
+    "phase": "Pending",
+    "total_cold_start_seconds": 0.0,
+    "container_create_duration_seconds": 0.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-4 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"node:18\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:26:28Z",
+        "last_timestamp": "2026-03-14T05:26:28Z"
+      }
+    ],
+    "image_size_estimate_mb": 1000,
+    "is_first_pull_on_node": 1.0,
+    "test_image": "node:18",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T11:00:07.382920",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: python:3.11-slim",
+    "pod_name": "image-pull-test-5",
+    "created_at": "2026-03-14T05:30:06Z",
+    "ready_at": "2026-03-14T05:30:07+00:00",
+    "container_started_at": "2026-03-14T05:30:06+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 1.0,
+    "container_create_duration_seconds": 0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-5 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulled",
+        "message": "Container image \"python:3.11-slim\" already present on machine",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:30:06Z",
+        "last_timestamp": "2026-03-14T05:30:06Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:30:06Z",
+        "last_timestamp": "2026-03-14T05:30:06Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:30:07Z",
+        "last_timestamp": "2026-03-14T05:30:07Z"
+      }
+    ],
+    "image_size_estimate_mb": 150,
+    "is_first_pull_on_node": 0.0,
+    "test_image": "python:3.11-slim",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T11:00:45.715064",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: node:18-slim",
+    "pod_name": "image-pull-test-6",
+    "created_at": "2026-03-14T05:30:44Z",
+    "ready_at": "2026-03-14T05:30:45+00:00",
+    "container_started_at": "2026-03-14T05:30:45+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 1.0,
+    "container_create_duration_seconds": 1.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-6 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulled",
+        "message": "Container image \"node:18-slim\" already present on machine",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:30:44Z",
+        "last_timestamp": "2026-03-14T05:30:44Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:30:45Z",
+        "last_timestamp": "2026-03-14T05:30:45Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:30:45Z",
+        "last_timestamp": "2026-03-14T05:30:45Z"
+      }
+    ],
+    "image_size_estimate_mb": 200,
+    "is_first_pull_on_node": 0.0,
+    "test_image": "node:18-slim",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T11:02:47.412592",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: nginx:latest",
+    "pod_name": "image-pull-test-7",
+    "created_at": "2026-03-14T05:31:22Z",
+    "ready_at": "2026-03-14T05:32:47+00:00",
+    "container_started_at": "2026-03-14T05:32:46+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 85.0,
+    "container_create_duration_seconds": 84.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-7 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"nginx:latest\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:31:23Z",
+        "last_timestamp": "2026-03-14T05:31:23Z"
+      },
+      {
+        "reason": "Pulled",
+        "message": "Successfully pulled image \"nginx:latest\" in 3.201s (1m23.067s including waiting). Image size: 180545980 bytes.",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:32:46Z",
+        "last_timestamp": "2026-03-14T05:32:46Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:32:46Z",
+        "last_timestamp": "2026-03-14T05:32:46Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:32:46Z",
+        "last_timestamp": "2026-03-14T05:32:46Z"
+      }
+    ],
+    "image_size_estimate_mb": 140,
+    "is_first_pull_on_node": 0.0,
+    "test_image": "nginx:latest",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T11:06:28.088625",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: python:3.11",
+    "pod_name": "image-pull-test-8",
+    "created_at": "2026-03-14T05:33:27Z",
+    "ready_at": null,
+    "container_started_at": null,
+    "phase": "Pending",
+    "total_cold_start_seconds": 0.0,
+    "container_create_duration_seconds": 0.0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-8 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulling",
+        "message": "Pulling image \"python:3.11\"",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:33:27Z",
+        "last_timestamp": "2026-03-14T05:33:27Z"
+      }
+    ],
+    "image_size_estimate_mb": 900,
+    "is_first_pull_on_node": 1.0,
+    "test_image": "python:3.11",
+    "image_pull_duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-03-14T11:07:06.432264",
+    "sub_cause": "image_pull_latency",
+    "description": "Large image pull: node:18",
+    "pod_name": "image-pull-test-9",
+    "created_at": "2026-03-14T05:37:05Z",
+    "ready_at": "2026-03-14T05:37:05+00:00",
+    "container_started_at": "2026-03-14T05:37:05+00:00",
+    "phase": "Running",
+    "total_cold_start_seconds": 0.0,
+    "container_create_duration_seconds": 0,
+    "init_container_duration_seconds": 0.0,
+    "init_container_count": 0,
+    "image_pull_errors": 0,
+    "image_pull_backoff": false,
+    "image_not_found": false,
+    "readiness_probe_failures": 0,
+    "scheduling_failed": false,
+    "events": [
+      {
+        "reason": "Scheduled",
+        "message": "Successfully assigned default/image-pull-test-9 to minikube",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": null,
+        "last_timestamp": null
+      },
+      {
+        "reason": "Pulled",
+        "message": "Container image \"node:18\" already present on machine",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:37:05Z",
+        "last_timestamp": "2026-03-14T05:37:05Z"
+      },
+      {
+        "reason": "Created",
+        "message": "Created container: main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:37:05Z",
+        "last_timestamp": "2026-03-14T05:37:05Z"
+      },
+      {
+        "reason": "Started",
+        "message": "Started container main",
+        "type": "Normal",
+        "count": 1,
+        "first_timestamp": "2026-03-14T05:37:05Z",
+        "last_timestamp": "2026-03-14T05:37:05Z"
+      }
+    ],
+    "image_size_estimate_mb": 1000,
+    "is_first_pull_on_node": 0.0,
+    "test_image": "node:18",
+    "image_pull_duration_seconds": 0
+  }
+]

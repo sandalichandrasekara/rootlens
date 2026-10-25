@@ -1,0 +1,182 @@
+[
+  {
+    "timestamp": "2026-03-14T12:45:03.637499",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 150 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 150,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 150,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:46:19.345147",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 200 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 200,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 200,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:47:34.914239",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 120 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 120,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 120,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:48:50.275565",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 180 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 180,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 180,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:50:06.597025",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 150 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 150,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 150,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:51:22.058982",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 200 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 200,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 200,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:52:37.445811",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 120 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 120,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 120,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:53:52.709894",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 180 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 180,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 180,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:55:08.132215",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 150 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 150,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 150,
+      "expected_lag_multiple": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-14T12:56:23.482783",
+    "sub_cause": "hpa_sync_delay",
+    "description": "HPA sync delay with 200 messages",
+    "metric_lag_seconds": 60,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 200,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "scenario": {
+      "queue_burst": 200,
+      "expected_lag_multiple": 1
+    }
+  }
+]

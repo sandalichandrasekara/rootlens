@@ -1,0 +1,192 @@
+[
+  {
+    "timestamp": "2026-03-14T12:58:29.178774",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 200,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 30,
+    "scenario": {
+      "queue_burst": 200,
+      "simulated_scrape_interval": 30
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:00:14.688594",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 250,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 45,
+    "scenario": {
+      "queue_burst": 250,
+      "simulated_scrape_interval": 45
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:02:00.156650",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 180,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 60,
+    "scenario": {
+      "queue_burst": 180,
+      "simulated_scrape_interval": 60
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:03:45.663969",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 220,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 30,
+    "scenario": {
+      "queue_burst": 220,
+      "simulated_scrape_interval": 30
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:05:31.221737",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 200,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 30,
+    "scenario": {
+      "queue_burst": 200,
+      "simulated_scrape_interval": 30
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:07:16.689469",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 250,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 45,
+    "scenario": {
+      "queue_burst": 250,
+      "simulated_scrape_interval": 45
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:09:02.215421",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 180,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 60,
+    "scenario": {
+      "queue_burst": 180,
+      "simulated_scrape_interval": 60
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:10:47.661591",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 220,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 30,
+    "scenario": {
+      "queue_burst": 220,
+      "simulated_scrape_interval": 30
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:12:33.204173",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 200,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 30,
+    "scenario": {
+      "queue_burst": 200,
+      "simulated_scrape_interval": 30
+    }
+  },
+  {
+    "timestamp": "2026-03-14T13:14:18.736174",
+    "sub_cause": "prometheus_scrape_gap",
+    "description": "Prometheus scrape gap scenario",
+    "metric_lag_seconds": 90,
+    "keda_polling_interval_seconds": 5,
+    "keda_cooldown_period_seconds": 30,
+    "trigger_threshold": 100,
+    "time_since_last_scale_seconds": 0,
+    "queue_depth_at_lag": 250,
+    "current_replicas": 0,
+    "desired_replicas": 1,
+    "hpa_sync_period_seconds": 15,
+    "prometheus_scrape_interval": 45,
+    "scenario": {
+      "queue_burst": 250,
+      "simulated_scrape_interval": 45
+    }
+  }
+]

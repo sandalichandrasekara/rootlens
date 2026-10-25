@@ -1,0 +1,292 @@
+[
+  {
+    "timestamp": "2026-03-14T12:13:21.681824",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 16000m, 32Gi",
+    "pod_name": "resource-test-0",
+    "scheduling_duration_seconds": 31.012590169906616,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 16000,
+    "memory_request_mb": 32768,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "16000m",
+    "requested_memory": "32Gi",
+    "resource_pressure_score": 1.6
+  },
+  {
+    "timestamp": "2026-03-14T12:13:57.913208",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 8000m, 64Gi",
+    "pod_name": "resource-test-1",
+    "scheduling_duration_seconds": 30.895785093307495,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 8000,
+    "memory_request_mb": 65536,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "8000m",
+    "requested_memory": "64Gi",
+    "resource_pressure_score": 0.8
+  },
+  {
+    "timestamp": "2026-03-14T12:14:34.123822",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 32000m, 16Gi",
+    "pod_name": "resource-test-2",
+    "scheduling_duration_seconds": 30.89207410812378,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 32000,
+    "memory_request_mb": 16384,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "32000m",
+    "requested_memory": "16Gi",
+    "resource_pressure_score": 3.2
+  },
+  {
+    "timestamp": "2026-03-14T12:15:10.422919",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 100000m, 8Gi",
+    "pod_name": "resource-test-3",
+    "scheduling_duration_seconds": 30.96950888633728,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 100000,
+    "memory_request_mb": 8192,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "100000m",
+    "requested_memory": "8Gi",
+    "resource_pressure_score": 10.0
+  },
+  {
+    "timestamp": "2026-03-14T12:15:46.802328",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 16000m, 32Gi",
+    "pod_name": "resource-test-4",
+    "scheduling_duration_seconds": 31.076792001724243,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 16000,
+    "memory_request_mb": 32768,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "16000m",
+    "requested_memory": "32Gi",
+    "resource_pressure_score": 1.6
+  },
+  {
+    "timestamp": "2026-03-14T12:16:23.064728",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 8000m, 64Gi",
+    "pod_name": "resource-test-5",
+    "scheduling_duration_seconds": 30.931854248046875,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 8000,
+    "memory_request_mb": 65536,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "8000m",
+    "requested_memory": "64Gi",
+    "resource_pressure_score": 0.8
+  },
+  {
+    "timestamp": "2026-03-14T12:16:59.365354",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 32000m, 16Gi",
+    "pod_name": "resource-test-6",
+    "scheduling_duration_seconds": 30.95403003692627,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 32000,
+    "memory_request_mb": 16384,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "32000m",
+    "requested_memory": "16Gi",
+    "resource_pressure_score": 3.2
+  },
+  {
+    "timestamp": "2026-03-14T12:17:35.765861",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 100000m, 8Gi",
+    "pod_name": "resource-test-7",
+    "scheduling_duration_seconds": 31.05622124671936,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 100000,
+    "memory_request_mb": 8192,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "100000m",
+    "requested_memory": "8Gi",
+    "resource_pressure_score": 10.0
+  },
+  {
+    "timestamp": "2026-03-14T12:18:12.046083",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 16000m, 32Gi",
+    "pod_name": "resource-test-8",
+    "scheduling_duration_seconds": 30.918591022491455,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 16000,
+    "memory_request_mb": 32768,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "16000m",
+    "requested_memory": "32Gi",
+    "resource_pressure_score": 1.6
+  },
+  {
+    "timestamp": "2026-03-14T12:18:48.365914",
+    "sub_cause": "insufficient_resources",
+    "description": "Excessive resources: 8000m, 64Gi",
+    "pod_name": "resource-test-9",
+    "scheduling_duration_seconds": 30.983782052993774,
+    "scheduling_attempts": 29,
+    "scheduled": false,
+    "scheduling_failure_reason": "InsufficientResources",
+    "has_node_selector": 0.0,
+    "has_node_affinity": 0.0,
+    "has_tolerations": 0.0,
+    "pod_priority": 0,
+    "cpu_request_millicores": 8000,
+    "memory_request_mb": 65536,
+    "node_count_in_cluster": 1,
+    "available_cpu_millicores": 10000,
+    "events": [
+      {
+        "reason": "FailedScheduling",
+        "message": "0/1 nodes are available: 1 Insufficient memory. no new claims to deallocate, preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.",
+        "type": "Warning",
+        "count": 1
+      }
+    ],
+    "requested_cpu": "8000m",
+    "requested_memory": "64Gi",
+    "resource_pressure_score": 0.8
+  }
+]

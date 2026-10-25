@@ -1,0 +1,41 @@
+# Training data (models are pre-built and copied separately)
+data/
+
+# Training scripts (not needed at runtime)
+train_cold_start_explainer.py
+train_metric_propagation_explainer.py
+train_scheduling_explainer.py
+
+# Tests
+tests/
+*.test
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Git
+.git/
+.gitignore
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Documentation
+*.md
+
+# Local config
+.env
+.env.*
+
+# Virtual environment
+venv/
+.venv/

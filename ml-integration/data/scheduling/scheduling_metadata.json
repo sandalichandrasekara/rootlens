@@ -1,0 +1,59 @@
+{
+  "feature_names": [
+    "scheduling_duration_seconds",
+    "scheduling_attempts",
+    "has_node_selector",
+    "has_node_affinity",
+    "has_tolerations",
+    "pod_priority",
+    "cpu_request_millicores",
+    "memory_request_mb",
+    "node_count_in_cluster",
+    "available_cpu_millicores",
+    "resource_pressure_score"
+  ],
+  "sub_causes": [
+    "taint_conflict",
+    "resource_quota_exceeded",
+    "node_affinity_mismatch",
+    "pdb_violation",
+    "insufficient_resources"
+  ],
+  "n_features": 11,
+  "n_classes": 5,
+  "total_samples": 50,
+  "splits": {
+    "train": {
+      "n_samples": 35,
+      "label_distribution": {
+        "insufficient_resources": 7,
+        "node_affinity_mismatch": 7,
+        "pdb_violation": 7,
+        "resource_quota_exceeded": 7,
+        "taint_conflict": 7
+      }
+    },
+    "val": {
+      "n_samples": 7,
+      "label_distribution": {
+        "insufficient_resources": 1,
+        "node_affinity_mismatch": 2,
+        "pdb_violation": 1,
+        "resource_quota_exceeded": 1,
+        "taint_conflict": 2
+      }
+    },
+    "test": {
+      "n_samples": 8,
+      "label_distribution": {
+        "insufficient_resources": 2,
+        "node_affinity_mismatch": 1,
+        "pdb_violation": 2,
+        "resource_quota_exceeded": 2,
+        "taint_conflict": 1
+      }
+    }
+  },
+  "source_dir": "/Users/sandyyy/Documents/MyFYP/rootlens/data-collection/raw_data/scheduling_subcauses",
+  "created_at": "2026-03-15T15:14:59"
+}

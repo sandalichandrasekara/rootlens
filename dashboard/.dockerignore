@@ -1,0 +1,12 @@
+node_modules/
+build/
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+*.md
+.env*
+coverage/
+.DS_Store
+*.swp
+*.swo

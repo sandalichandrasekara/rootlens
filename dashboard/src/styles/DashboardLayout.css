@@ -1,0 +1,128 @@
+/* ============================================
+   DASHBOARD LAYOUT STYLES
+   ============================================ */
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  overflow-y: auto;
+  background-color: var(--color-bg-primary);
+  transition: margin-left var(--transition-base);
+}
+
+.sidebar-collapsed .main-content {
+  margin-left: 80px;
+}
+
+/* Page Title */
+.page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  border-bottom: 1px solid var(--color-border);
+  margin: 0;
+}
+
+/* Content Area */
+.content-area {
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  max-width: 100%;
+}
+
+/* Mobile topbar (hidden on desktop) */
+.mobile-topbar {
+  display: none;
+}
+
+/* Scrollbar Styling */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-light);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .sidebar-collapsed .main-content {
+    margin-left: 0;
+  }
+
+  /* Hide desktop page title, shown in mobile topbar instead */
+  .page-title {
+    display: none;
+  }
+
+  .content-area {
+    padding: var(--spacing-lg);
+  }
+
+  /* Mobile topbar */
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+  }
+
+  .mobile-menu-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .mobile-menu-btn:hover {
+    background-color: var(--color-bg-tertiary);
+  }
+
+  .mobile-topbar-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+}
+
+@media (max-width: 480px) {
+  .content-area {
+    padding: var(--spacing-md);
+  }
+}

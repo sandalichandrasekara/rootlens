@@ -1,0 +1,99 @@
+/* ============================================
+   TABLE COMPONENT STYLES
+   ============================================ */
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+}
+
+/* Header */
+.table thead {
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.table th {
+  padding: var(--spacing-lg) var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* Body */
+.table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-base);
+}
+
+.table td {
+  padding: var(--spacing-lg) var(--spacing-md);
+  color: var(--color-text-secondary);
+}
+
+/* Striped Variant */
+.table.striped tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Hoverable Variant */
+.table.hoverable tbody tr:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--color-text-primary);
+}
+
+/* Empty State */
+.table .empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl) !important;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* Scrollbar Styling */
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table {
+    font-size: var(--font-size-xs);
+  }
+
+  .table th,
+  .table td {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .table.striped tbody tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .table.hoverable tbody tr:hover {
+  background-color: rgba(0, 163, 125, 0.08);
+}

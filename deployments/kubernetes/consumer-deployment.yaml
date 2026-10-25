@@ -1,0 +1,51 @@
+# LOCAL DEV ONLY — uses locally built images (minikube).
+# For production, use the operator: operator/config/samples/rca_v1alpha1_rootlens_ghcr.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-consumer
+  namespace: default
+  labels:
+    app: consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+      - name: consumer
+        image: rabbitmq-consumer:latest
+        imagePullPolicy: IfNotPresent 
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+        env:
+        - name: RABBITMQ_HOST
+          value: "rabbitmq.rabbitmq.svc.cluster.local"
+        - name: RABBITMQ_USER
+          valueFrom:
+            secretKeyRef:
+              name: rootlens-secrets
+              key: RABBITMQ_USERNAME
+        - name: RABBITMQ_PASS
+          valueFrom:
+            secretKeyRef:
+              name: rootlens-secrets
+              key: RABBITMQ_PASSWORD
+        - name: QUEUE_NAME
+          value: "rootlens-tasks"
+        - name: PROCESSING_TIME_MS
+          value: "100"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"

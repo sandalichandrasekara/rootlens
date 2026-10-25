@@ -1,0 +1,35 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: rabbitmq-trigger-auth
+  namespace: default
+spec:
+  secretTargetRef:
+  - parameter: host
+    name: keda-rabbitmq-secret
+    key: connection-string
+---
+# Create this secret before applying:
+#   kubectl create secret generic keda-rabbitmq-secret \
+#     --from-literal=connection-string="amqp://admin:<PASSWORD>@rabbitmq.rabbitmq.svc.cluster.local:5672/"
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: rabbitmq-consumer-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: rabbitmq-consumer
+  pollingInterval: 5   # Check every 5 seconds
+  cooldownPeriod: 30   # Wait 30s before scaling down
+  minReplicaCount: 0   # Scale to zero when no messages
+  maxReplicaCount: 10  # Maximum 10 replicas
+  triggers:
+  - type: rabbitmq
+    authenticationRef:
+      name: rabbitmq-trigger-auth
+    metadata:
+      queueName: rootlens-tasks
+      mode: QueueLength
+      value: "50"  

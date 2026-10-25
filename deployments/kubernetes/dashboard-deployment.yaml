@@ -1,0 +1,68 @@
+# LOCAL DEV ONLY — uses locally built images (minikube).
+# For production, use the operator: operator/config/samples/rca_v1alpha1_rootlens_ghcr.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rootlens-dashboard
+  namespace: default
+  labels:
+    app: rootlens-dashboard
+    component: rootlens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rootlens-dashboard
+  template:
+    metadata:
+      labels:
+        app: rootlens-dashboard
+        component: rootlens
+    spec:
+      containers:
+      - name: dashboard
+        image: rootlens-dashboard:latest
+        imagePullPolicy: IfNotPresent  
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+        ports:
+        - containerPort: 3000
+          name: http
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rootlens-dashboard
+  namespace: default
+  labels:
+    app: rootlens-dashboard
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30001
+    name: http
+  selector:
+    app: rootlens-dashboard

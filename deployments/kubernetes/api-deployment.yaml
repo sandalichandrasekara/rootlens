@@ -1,0 +1,73 @@
+# LOCAL DEV ONLY — uses locally built images (minikube).
+# For production, use the operator: operator/config/samples/rca_v1alpha1_rootlens_ghcr.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rootlens-api
+  namespace: default
+  labels:
+    app: rootlens-api
+    component: rootlens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rootlens-api
+  template:
+    metadata:
+      labels:
+        app: rootlens-api
+        component: rootlens
+    spec:
+      containers:
+      - name: api
+        image: rootlens-api:latest
+        imagePullPolicy: IfNotPresent  
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+        ports:
+        - containerPort: 8080
+          name: http
+        envFrom:
+        - configMapRef:
+            name: rootlens-config
+        - secretRef:
+            name: rootlens-secrets
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "300m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rootlens-api
+  namespace: default
+  labels:
+    app: rootlens-api
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30080
+    name: http
+  selector:
+    app: rootlens-api

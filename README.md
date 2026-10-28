@@ -84,8 +84,5 @@ This project is licensed under the terms of the **MIT License**.
 
 See the [LICENSE](LICENSE) file for details.
 
----
-
-> **Note:** This repository is developed as a university final year project draft.
 
 
